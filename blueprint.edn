@@ -1,0 +1,12 @@
+{:itonami.blueprint/id "cloud-itonami-1080"
+ :itonami.blueprint/name "Prepared Animal Feeds Manufacturing Coordination"
+ :itonami.blueprint/isic-rev5 "1080"
+ :itonami.blueprint/domain :food/prepared-animal-feeds-manufacturing
+ :itonami.blueprint/license "AGPL-3.0-or-later"
+ :itonami.blueprint/social-impact [:food-security :food-safety :fair-labor]
+ :itonami.blueprint/governor :feedops-governor
+ :itonami.blueprint/robotics true
+ :itonami.blueprint/required-technologies [:identity :forms :audit-ledger :cae]
+ :itonami.blueprint/optional-technologies [:telemetry]
+ :itonami.blueprint/status :public-oss
+ :itonami.blueprint/maturity :blueprint}
