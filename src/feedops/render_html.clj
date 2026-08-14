@@ -692,7 +692,7 @@
 
      (section
       "実測: 台帳の出所と、HARD と ESCALATE の見分け"
-      (str "この節は主張ではなく render 時の計数。actor が振る舞いを変えれば数字が自動で変わる。")
+      "この節は主張ではなく render 時の計数。actor が振る舞いを変えれば数字が自動で変わる。"
       (table ["観測" "値" "意味"]
              [(row "台帳 fact 総数" (str (:total prov)) "—")
               (row "actor が出した fact" (str (:actor-emitted prov))
@@ -702,16 +702,16 @@
                    "承認/自動commitの記録。actor 側に対応する fact 生成が無いため")
               (row "クリーン判定だった手数" (str (:clean-steps prov)) "<code>:ok? true</code>")
               (row "うち actor が fact を出した手数"
-                   (str (if (zero? (:clean-steps-with-actor-fact prov))
-                          (str "<span class=\"critical\">" (:clean-steps-with-actor-fact prov) "</span>")
-                          (str "<span class=\"ok\">" (:clean-steps-with-actor-fact prov) "</span>")))
+                   (if (zero? (:clean-steps-with-actor-fact prov))
+                     (str "<span class=\"critical\">" (:clean-steps-with-actor-fact prov) "</span>")
+                     (str "<span class=\"ok\">" (:clean-steps-with-actor-fact prov) "</span>"))
                    (if (zero? (:clean-steps-with-actor-fact prov))
                      "<b>欠陥</b>: <code>run-operation</code> は承認時に <code>{:ok? true :facts []}</code> を返し、append-only 台帳に commit の証跡を残さない"
                      "承認時にも actor が fact を出している"))
               (row "うち actor が verdict を返した手数"
-                   (str (if (zero? (:clean-steps-with-verdict prov))
-                          (str "<span class=\"critical\">" (:clean-steps-with-verdict prov) "</span>")
-                          (str "<span class=\"ok\">" (:clean-steps-with-verdict prov) "</span>")))
+                   (if (zero? (:clean-steps-with-verdict prov))
+                     (str "<span class=\"critical\">" (:clean-steps-with-verdict prov) "</span>")
+                     (str "<span class=\"ok\">" (:clean-steps-with-verdict prov) "</span>"))
                    (if (zero? (:clean-steps-with-verdict prov))
                      "<b>欠陥</b>: 承認時の戻り値に <code>:verdict</code> が無いので、どの信頼度で通したかを台帳から追えない (この頁は <code>governor/check</code> を再実行して表示している)"
                      "承認時にも verdict が返っている"))
