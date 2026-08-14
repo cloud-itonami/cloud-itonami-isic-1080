@@ -413,10 +413,15 @@
       (str/replace "<" "&lt;")
       (str/replace ">" "&gt;")))
 
-(defn- kw [v] (if (keyword? v) (name v) (str v)))
+(defn- kw
+  "Keyword text WITHOUT the leading colon but WITH its namespace, so an
+  id on the page is greppable in the seed data verbatim
+  (`feed/poultry-broiler-pellet`, not `poultry-broiler-pellet`)."
+  [v]
+  (if (keyword? v) (subs (str v) 1) (str v)))
 
 (defn- kws
-  "Sorted, comma-joined names -- never relies on set iteration order."
+  "Sorted, comma-joined ids -- never relies on set iteration order."
   [coll]
   (if (seq coll) (str/join ", " (sort (map kw coll))) "—"))
 
@@ -556,8 +561,13 @@
               (when by (str " &middot; " (esc by))))
          "<span class=\"ok\">actor</span>")))
 
-(defn- kv-row [k v]
-  (row (esc k) v))
+(defn- kv-row
+  "Label/value row. The label is author-written markup (never runtime
+  data), so it is NOT escaped -- escaping it would print its `<code>`
+  tags literally and double-escape its entities. Values that carry
+  runtime data are escaped by their caller."
+  [k v]
+  (row k v))
 
 (defn render
   "Render the console from a completed `run-demo!` result."
