@@ -1,12 +1,11 @@
-{:paths ["src"]
- ;; The actor itself is dependency-free: `feedops.operation` is a pure
- ;; function that takes the governor fn directly, so there is no
- ;; langgraph on the runtime path (`feedops.sim` is still a stub).
- ;; jp-go-digital-design-system is needed only to style the generated
- ;; operator console (`:render-html`); it is a leaf, cljc, no-native dep.
- :deps {io.github.kotoba-lang/jp-go-digital-design-system
-        {:git/url "https://github.com/kotoba-lang/jp-go-digital-design-system"
-         :git/sha "83db99546eabc53613ae826ea41d1533a3c574af"}}
+{:paths ["src" "resources"]
+ ;; Dependency-free on purpose. `feedops.operation` is a pure function
+ ;; that takes the governor fn directly, so there is no langgraph on the
+ ;; runtime path (`feedops.sim` is still a stub), and the operator
+ ;; console styles itself from the DADS CSS vendored at
+ ;; `resources/feedops/dads-console.css` -- so `clojure -M:dev:render-html`
+ ;; reproduces the page from a bare checkout with no network access.
+ :deps {}
  :aliases
  {:dev {:override-deps
         {io.github.kotoba-lang/langchain

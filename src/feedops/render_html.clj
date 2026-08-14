@@ -41,13 +41,31 @@
 
   Usage: `clojure -M:dev:render-html [out-file]`
   (default `docs/samples/operator-console.html`)."
-  (:require [clojure.set :as set]
+  (:require [clojure.java.io :as io]
+            [clojure.set :as set]
             [clojure.string :as str]
             [feedops.facts :as facts]
             [feedops.governor :as governor]
             [feedops.operation :as op]
-            [feedops.store :as store]
-            [jp-go-dds.skin]))
+            [feedops.store :as store]))
+
+(def ^:private console-css
+  "The デジタル庁デザインシステム (DADS) token layer plus this console's skin,
+  VENDORED into `resources/feedops/dads-console.css`.
+
+  It is vendored rather than pulled as a git dependency on purpose: this
+  page must be reproducible from a bare checkout with no network, and
+  `deps.edn` here is otherwise dependency-free. The bytes are the same
+  DADS base that `docs/index.html` (the product face) vendors, so the
+  console and the product face share one visual language.
+
+  Re-vendor -- do not hand-edit -- if the design system moves."
+  (delay
+   (let [r (io/resource "feedops/dads-console.css")]
+     (when-not r
+       (throw (ex-info "vendored console CSS is missing from the classpath -- refusing to render an unstyled page"
+                       {:resource "feedops/dads-console.css"})))
+     (slurp r))))
 
 ;; ─────────────────────────── scenario seed ───────────────────────────
 
@@ -582,7 +600,7 @@
      "<!doctype html>\n<html lang=\"ja\"><head><meta charset=\"utf-8\">"
      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
      "<title>cloud-itonami-isic-1080 &middot; feedops operator console</title><style>"
-     (jp-go-dds.skin/dds+skin)
+     @console-css
      "</style></head><body>\n"
      "<header class=\"bar\">\n"
      "  <h1>配合飼料製造 (ISIC 1080) — オペレーターコンソール</h1>\n"
