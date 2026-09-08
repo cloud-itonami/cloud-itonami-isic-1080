@@ -43,7 +43,7 @@
   (default `docs/samples/operator-console.html`)."
   (:require [clojure.java.io :as io]
             [clojure.set :as set]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [feedops.facts :as facts]
             [feedops.governor :as governor]
             [feedops.operation :as op]
