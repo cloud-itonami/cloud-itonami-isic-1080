@@ -8,7 +8,7 @@
   the Governor actually returned.
 
   This actor does NOT use langgraph: `feedops.sim` is a stub
-  (`clojure -M:dev:run` prints \"not yet implemented\"), and
+  (`kbb -M:dev:run` prints \"not yet implemented\"), and
   `feedops.operation/run-operation` is a pure function that takes the
   governor fn directly. So the console calls the operation actor the way
   the actor is actually built, rather than inventing a StateGraph the
@@ -39,7 +39,7 @@
   Governor's verdict do -- and both verdicts are stable for all time,
   so consecutive runs are byte-identical.
 
-  Usage: `clojure -M:dev:render-html [out-file]`
+  Usage: `kbb -M:dev:render-html [out-file]`
   (default `docs/samples/operator-console.html`)."
   (:require [clojure.java.io :as io]
             [clojure.set :as set]
@@ -610,7 +610,7 @@
 
      (section
       "この頁の出所"
-      (str "<code>clojure -M:dev:render-html</code> が実行時に "
+      (str "<code>kbb -M:dev:render-html</code> が実行時に "
            "<code>feedops.operation/run-operation</code> &rarr; "
            "<code>feedops.governor/check</code> &rarr; <code>feedops.store</code> "
            "を実際に駆動して生成した。値は一つも手書きされていない: 製品規格と法域要件は "
