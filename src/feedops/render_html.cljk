@@ -768,7 +768,7 @@
      "</main>\n"
      "<footer>\n"
      "  <p class=\"muted\">cloud-itonami-isic-1080 &middot; feedops &middot; "
-     "<code>src/feedops/render_html.clj</code> が実 actor 実行から生成。"
+     "<code>src/feedops/render_html.cljk</code> が実 actor 実行から生成。"
      "この頁は決定論的で、同じ seed に対して再生成すると byte 単位で一致する。</p>\n"
      "</footer>\n"
      "</body></html>\n")))

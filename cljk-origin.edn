@@ -1,0 +1,20 @@
+{:format :kotoba.cljk-origin/v1
+ :renamed-on "2026-09-11"
+ :decision "adr-2609111500-cljk-rename-all-clojure-source (com-junkawasaki/root 90-docs/adr; owner instruction 2026-09-11)"
+ :rule "value = the extension the file had before the rename. A path ending in .clj.cljk or .cljs.cljk kept it in the name because both platform files existed (or the plain target was taken)."
+ :origins
+ {"src/feedops/advisor.cljk" ".cljc"
+  "src/feedops/facts.cljk" ".cljc"
+  "src/feedops/governor.cljk" ".cljc"
+  "src/feedops/operation.cljk" ".cljc"
+  "src/feedops/phase.cljk" ".cljc"
+  "src/feedops/registry.cljk" ".cljc"
+  "src/feedops/render_html.cljk" ".clj"
+  "src/feedops/sim.cljk" ".cljc"
+  "src/feedops/store.cljk" ".cljc"
+  "test/feedops/facts_test.cljk" ".cljc"
+  "test/feedops/governor_test.cljk" ".cljc"
+  "test/feedops/operation_test.cljk" ".cljc"
+  "test/feedops/phase_test.cljk" ".cljc"
+  "test/feedops/registry_test.cljk" ".cljc"
+  "test/feedops/store_test.cljk" ".cljc"}}
