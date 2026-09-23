@@ -1,5 +1,5 @@
 (ns feedops.store-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [feedops.store :as store]))
 
 ;; ──────────────────────── Batch Retrieval ──────────────────────
