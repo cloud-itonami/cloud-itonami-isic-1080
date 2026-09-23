@@ -1,5 +1,5 @@
 (ns feedops.operation-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [feedops.operation :as operation]
             [feedops.governor :as governor]))
 
