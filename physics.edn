@@ -1,0 +1,32 @@
+{:physics/schema "itonami.physical-ai.spec.v1"
+ :repo "cloud-itonami/cloud-itonami-isic-1080"
+ :cases
+ [{:id :pellet-cooler
+   :kind :thermal
+   :procedure "hot pellets (4 mm) leave the pellet mill at 85 C and are cooled by ambient air in the counterflow cooler"
+   :params {:thickness-m 0.002 :conductivity-w-mk 0.30 :density-kg-m3 1300.0 :specific-heat-j-kgk 1800.0
+            :t0-c 85.0 :t-hot-c 25.0 :h-front-w-m2k 40.0 :h-back-w-m2k 0.0 :t-back-ambient-c 25.0
+            :threshold-c 30.0 :nodes 11}
+   :sweep {:param :duration-s :values [60.0 120.0 300.0 480.0 600.0]}
+   :quantity :final-back-c
+   :limit {:max 30.0 :basis "estimate: feed mills cool pellets to within ~5 C of ambient before bagging to avoid condensation and mould (moisture removal is not modelled)"}
+   :boundary {:lo 10.0 :hi 3000.0}}
+  {:id :feed-bag-palletize
+   :kind :manipulator
+   :procedure "palletizing arm lifts a filled feed bag off the bagging scale onto the pallet"
+   :params {:l1-m 0.90 :l2-m 0.80 :m1-kg 18.0 :m2-kg 12.0
+            :from [0.90 0.20] :to [0.40 1.20] :duration-s 3.0 :steps 500}
+   :sweep {:param :payload-kg :values [10.0 20.0 25.0 40.0 50.0]}
+   :quantity :peak-tau1-nm
+   :limit {:max 600.0 :basis "estimate: continuous shoulder torque of a mid-size palletizing arm rated for 50 kg bags"}
+   :boundary {:lo 1.0 :hi 100.0}}
+  {:id :feed-pallet-stacker
+   :kind :transport
+   :procedure "pallet stacker AMR carries a 1 t pallet of feed bags into the warehouse racking and brakes with the load raised"
+   :params {:mass-kg 1200.0 :payload-kg 1000.0 :distance-m 50.0 :v-max-mps 1.5 :a-max-mps2 0.5
+            :brake-decel-mps2 2.0 :drive-force-n 2500.0 :crr 0.015 :cog-height-m 0.50
+            :support-half-length-m 0.45 :max-time-s 3000.0}
+   :sweep {:param :payload-cog-height-m :values [0.5 1.0 1.5 2.0 2.5 3.0]}
+   :quantity :min-tipover-margin
+   :limit {:min 0.3 :basis "estimate: keep 30 % of the restoring moment in reserve under a 2 m/s2 stop"}
+   :boundary {:lo 0.3 :hi 5.0}}]}
