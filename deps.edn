@@ -13,7 +13,8 @@
         io.github.kotoba-lang/io {:git/sha "72dde04b4c32854d70d17a670b277f8f7957a784"}
         ;; kotoba.robotics.process: the process-physics solvers and probe this
         ;; repo's physics.edn runs on (physical-AI bot, scripts/physical-ai-bots).
-        io.github.kotoba-lang/robotics {:local/root "../../kotoba-lang/robotics"}
+        io.github.kotoba-lang/robotics
+        {:local/root "../../kotoba-lang/kotoba/lib/kotoba.robotics"}
 
         ;; kotoba.lang.coll replaced clojure.set here (2026-09-24). An explicit
         ;; floor: kotoba.lang.coll carries clojure.set's union/intersection/
@@ -41,7 +42,7 @@
         {io.github.kotoba-lang/langchain
          {:local/root "../../kotoba-lang/langchain"}
         io.github.kotoba-lang/langgraph
-        {:local/root "../../kotoba-lang/langgraph"}}}
+        {:local/root "../../kotoba-lang/kotoba/lib/kotoba.langgraph"}}}
   :run {:main-opts ["-m" "feedops.sim"]}
   ;; kbb -M:dev:render-html [out-file]
   ;; -> regenerate docs/samples/operator-console.html by driving the real
